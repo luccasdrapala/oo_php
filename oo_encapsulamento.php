@@ -6,7 +6,6 @@
         protected $sobrenome = 'Drapala';
         public $status = 'ativo'; //publico
 
-        /*
         //getters e setters overloading funcionam de forma automatica
         public function __set($atributo, $valor) {
             $this->$atributo = $valor;
@@ -15,7 +14,7 @@
         public function __get($atributo) {
             return $this->$atributo;
         }
-        */
+        
 
         private function acao() {
             echo 'acao private';
@@ -34,13 +33,11 @@
 
     class Filho extends Pai {
 
-        public function getAtributo($attr) {
-            return $this->$attr;
-        }
-
-        public function setAtributo($attr, $value){
-            $this->$attr = $value;
-        }
+        public function __construct() {
+            echo '<pre>';
+            print_r(get_class_methods($this));
+            echo '</pre>';
+        } 
     }
  
     /*
@@ -70,8 +67,16 @@
     print_r($filho);
     echo '</pre><hr>';
 
-    echo $filho->getAtributo('sobrenome<br>');
-    $filho->setAtributo('sobrenome','carlsagan');
-    echo $filho->getAtributo('sobrenome<br>');
+    /*
+    $filho->setAtributo('nome','carlsagan');
+    echo $filho->getAtributo('nome');
+    echo '<hr>';
+    */
+
+    echo '<pre>';
+    print_r(get_class_methods($filho));
+    echo '</pre><hr>';
+
+    $filho->executaAcoes();
 
 ?>
